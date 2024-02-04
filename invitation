@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Date Invitation</title>
+    <style>
+        body {
+            background-color: pink;
+        }
+
+        .invitation-button, .rejection-button {
+            background-color: #FF69B4; /* Pink color */
+            color: #FFFFFF; /* White text color */
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .rejection-button {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .rejection-button:hover {
+            transform: translateX(15px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hey Vaishnavi!</h1>
+    <p>Would you be my Valentine?</p>
+
+    <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $option = $_POST["option"];
+            if ($option == 1 || $option == 2 || $option == 3) {
+                echo "<script>confetti();</script>";
+            }
+            echo "<script>alert('Great! Looking forward to a wonderful Valentine\'s Day with you! (Option $option)');</script>";
+        }
+    ?>
+    
+    <form method="post">
+        <button class="invitation-button" type="submit" name="option" value="1">Yes, I'd love to!</button>
+        <button class="invitation-button" type="submit" name="option" value="2">Yes! Absolutely!</button>
+        <button class="rejection-button" type="submit" name="option" value="3">No, thanks.</button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        function confetti() {
+            particlesJS('confetti', {
+                particles: {
+                    number: { value: 200 },
+                    color: { value: '#FF69B4' },
+                    shape: { type: 'circle' },
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
